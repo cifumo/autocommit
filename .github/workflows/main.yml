@@ -1,0 +1,31 @@
+name: Auto Commit Daily
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs at midnight UTC every day
+  workflow_dispatch:  # Allows manual trigger of the workflow
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Git
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+
+    - name: Make changes (if necessary)
+      run: |
+        # Example: Modify or create files here. Customize as needed.
+        echo "Update: $(date)" > update.txt
+        git add update.txt
+        git commit -m "Auto commit $(date)"
+
+    - name: Push changes
+      run: |
+        git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }}.git
+        git push
