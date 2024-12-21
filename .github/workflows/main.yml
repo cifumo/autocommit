@@ -20,12 +20,11 @@ jobs:
 
     - name: Make changes (if necessary)
       run: |
-        # Example: Modify or create files here. Customize as needed.
         echo "Update: $(date)" > update.txt
         git add update.txt
         git commit -m "Auto commit $(date)"
 
     - name: Push changes
       run: |
-        git remote set-url origin https://x-access-token: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@github.com/${{ github.repository }}.git
-        git push
+        # Use the built-in GITHUB_TOKEN for authentication
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
