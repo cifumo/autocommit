@@ -15,8 +15,8 @@ jobs:
 
     - name: Set up Git
       run: |
-        git config user.name "GitHub Actions"
-        git config user.email "actions@github.com"
+        git config user.name "cifumo"
+        git config user.email "mtiosaputra70@gmail.com"
 
     - name: Make changes (if necessary)
       run: |
